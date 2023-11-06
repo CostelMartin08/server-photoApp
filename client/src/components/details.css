@@ -1,0 +1,104 @@
+.photo {
+    width: 320px;
+    height: 460px;
+    object-fit: fill;
+    border-radius: 10px;
+}
+
+#picture {
+    width: 320px;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 Carusel.jsx                                */
+/* -------------------------------------------------------------------------- */
+
+.carusel-img {
+    filter: opacity(96%);
+    object-fit: cover;
+    width: 100vw;
+
+}
+
+
+.bg-det {
+    background-color: #562B08;
+}
+
+.slick-dots {
+    bottom: -18px;
+}
+
+@media only screen and (max-width: 1000px) {
+
+    .carusel-img {
+        height: 101vh;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Footer                                   */
+/* -------------------------------------------------------------------------- */
+
+.bg-set {
+    background-color: #562B08;
+
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Banner                                   */
+/* -------------------------------------------------------------------------- */
+
+
+.banner-bg {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-repeat: no-repeat;
+    background-size: auto 1100px;
+    background-position: 50% 15%;
+    height: 600px;
+    width: 100%;
+
+}
+
+.banner-bg-diverse {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-repeat: no-repeat;
+    background-size: auto 1050px;
+    background-position: 50% 60%;
+    height: 600px;
+    width: 100%;
+}
+
+.banner-bg--botezuri {
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-repeat: no-repeat;
+    background-size: auto 1050px;
+    background-position: 60% 30%;
+    height: 600px;
+    width: 100%;
+}
+
+@media only screen and (max-width: 700px) {
+
+    .banner-bg {
+        background-size: 750px 500px;
+        height: 300px;
+    }
+
+    .banner-bg-diverse {
+        background-size: 700px 500px;
+        height: 350px;
+    }
+
+    .banner-bg--botezuri {
+        background-size: 700px 500px;
+        height: 300px;
+    }
+}

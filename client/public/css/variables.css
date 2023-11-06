@@ -1,0 +1,15 @@
+:root {
+
+    --font-title: 'Lexend', sans-serif;
+    --font-text: 'Lexend', sans-serif;
+    --font-card: 'Lexend', sans-serif;
+    --background-day: #3A6351;
+    --background-first: rgb(62, 74, 74);
+    --background-day-body: #d1ceca;
+    --background-night: #562B08;
+    --background-night-body: #282A29;
+    --text-color: white;
+
+
+
+}

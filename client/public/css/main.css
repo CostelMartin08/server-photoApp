@@ -1,0 +1,119 @@
+@import url('./second.css');
+@import url('./variables.css');
+
+/* -------------------------------------------------------------------------- */
+/*                                    Font                                    */
+/* -------------------------------------------------------------------------- */
+.title-font {
+    font-family: var(--font-title);
+    font-weight: 800;
+    font-size: 160%;
+}
+
+.title-md-font {
+    font-size: xx-large;
+}
+
+.text-font {
+    font-family: var(--font-text);
+    font-weight: 200;
+    font-size: larger;
+}
+
+.text-font-creator-dark {
+    font-family: var(--font-text);
+    font-size:small;
+    background-color:rgb(28 31 29);
+    color: #FFFFFF;
+}
+.text-font-creator-light{
+    font-family: var(--font-text);
+    font-size:small;
+    background-color: rgb(32, 40, 40);
+    color: #FFFFFF;
+;}
+.text-font-contact {
+    font-family: var(--font-text);
+    font-weight: 400;
+    font-size: larger;
+}
+
+.text-font-mix {
+    font-family: var(--font-text);
+    font-weight: 400;
+}
+
+.card-font {
+    font-family: var(--font-card);
+    font-weight: 500;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              Background colors                             */
+/* -------------------------------------------------------------------------- */
+
+.text-light {
+    color: #FFFFFF !important;
+
+}
+
+.borderHeader {
+
+    border-bottom: 3px solid var(--background-day);
+
+}
+
+.borderHeaderNight {
+    border-bottom: 3px solid var(--background-night);
+}
+
+.bg {
+    background-color: var(--background-day);
+    color: var(--text-color);
+}
+
+.bgDark {
+    background-color: var(--background-night);
+    color: var(--text-color);
+}
+
+.bg-day {
+
+    background-color: var(--background-day-body);
+    color: var(--background-night-body);
+}
+
+.bg-night {
+    background-color: var(--background-night-body);
+    color: white;
+}
+
+.bgDay-header {
+    background-color: var(--background-first);
+    color: var(--background-night-body);
+}
+
+.bgDark-header {
+    background-color: var(--background-night-body);
+    color: var(--text-color) !important;
+}
+
+/* -------------------------------------------------------------------------- */
+
+li {
+    list-style: none;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+@media only screen and (min-width: 470px) {
+    .title-font {
+        font-family: var(--font-title);
+        font-weight: 800;
+        font-size: xx-large;
+    }
+
+}

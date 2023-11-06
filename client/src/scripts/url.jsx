@@ -1,1 +1,2 @@
-export const urlBase = "https://balanandrei.ro/api";
+
+export const urlBase = 'https://balanandrei.ro/api';

@@ -24,22 +24,21 @@ require('dotenv').config();
 /* -------------------------------------------------------------------------- */
 /*                                 Middleware                                 */
 /* -------------------------------------------------------------------------- */
+
 const publicDirectoryPath = path.join(__dirname, 'public');
 
-const buildDirectoryPath = path.join(__dirname, 'client', 'dist');
+//const buildDirectoryPath = path.join(__dirname, 'client', 'dist');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(publicDirectoryPath));
 
-app.use(express.static(buildDirectoryPath));
-
-
+//app.use(express.static(buildDirectoryPath));
 
 app.use(
     cors({
-        origin: [ 'http://localhost:8080', 'https://martinescuconstantin.com'],
+        origin: ['http://localhost:5173', 'https://martinescuconstantin.com'],
         credentials: true,
     })
 );
@@ -152,14 +151,11 @@ app.post('/api/send-email', (req, res) => {
 })
 
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,  'client', 'dist', 'index.html'));
-});
 
 
-app.get('*', (req, res) => {
+{/*app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-});
+});*/}
 
 
 

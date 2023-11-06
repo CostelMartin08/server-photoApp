@@ -1,5 +1,3 @@
 # dependencies
 /node_modules
-/schema/mongoConnect.js
-/schema/config.js
 .env

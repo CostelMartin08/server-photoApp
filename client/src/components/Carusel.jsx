@@ -7,7 +7,7 @@ const Carusel = (props) => {
 
     const settings = {
         arrows: false,
-        lazyLoad: true,
+        lazyLoad: false,
         dots: true,
         infinite: true,
         slidesToShow: 1,

@@ -81,7 +81,7 @@ const PhotoEvents = (props) => {
         fileMod={theme.mod.bgHeader}
       />
       <Banner />
-      <main className='container px-5 my-4'>
+      <main className='container px-5 my-5'>
         <SortButton
           theme={theme}
           updateSort={updateSortState}

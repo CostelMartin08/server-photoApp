@@ -127,19 +127,22 @@ const AlbumDetails = () => {
 
 
     return (
-        <section className={theme.mod.bgB} >
+        <section className={theme.mod.bgB}>
+
             <Header
                 theme={theme}
                 fileMod={theme.mod.bgHeader} />
-            <main className={`h-100 ${theme.mod.bgB}`}>
+
+            <main className={`${theme.mod.bgB}`}>
+
                 {data && dataBrut ? (
-                    <div>
+                    <>
                         <div className="banner position-relative">
                             <div
                                 className="bg-albumdetails"
                                 style={{ backgroundImage: `url(https://balanandrei.ro/images/${existingURL})` }}>
                             </div>
-                            <div className='bg-content mx-3 position-absolute'>
+                            <div className='bg-content'>
                                 <h3
                                     className="title-font mb-2">
                                     {dataBrut.title}
@@ -211,24 +214,30 @@ const AlbumDetails = () => {
                         )}
                         <div className="container-fluid">
                             {loading ?
-                                <div className="masonry-grid" ref={gridRef}>
-                                    <div className="grid-sizer"></div>
+                                <div className="masonry-grid mx-auto" ref={gridRef}>
+
+
                                     {dataBrut.content &&
                                         dataBrut.content.map((slide, indexu) => (
-                                            <div
-                                                className="grid-item"
-                                                key={indexu}
-                                                onClick={() => handleOpenModal(indexu)}>
-                                                <img
-                                                    className="photo-grid "
-                                                    src={`https://balanandrei.ro/images/${param[2]}/${dataBrut.title}/${slide}`}
-                                                    alt={`poza${indexu}`}
-                                                />
+
+                                            <div className='grid-sizer'>
+
+                                                <div
+                                                    className="grid-item"
+                                                    key={indexu}
+                                                    onClick={() => handleOpenModal(indexu)}>
+                                                    <img
+                                                        className="photo-grid "
+                                                        src={`https://balanandrei.ro/images/${param[2]}/${dataBrut.title}/${slide}`}
+                                                        alt={`poza${indexu}`}
+                                                    />
+                                                </div>
+
                                             </div>
                                         ))}
                                 </div> : <Loaders />}
                         </div>
-                    </div>
+                    </>
                 ) : (
                     <Loaders />
                 )}

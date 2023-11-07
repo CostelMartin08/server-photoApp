@@ -220,11 +220,11 @@ const AlbumDetails = () => {
                                     {dataBrut.content &&
                                         dataBrut.content.map((slide, indexu) => (
 
-                                            <div className='grid-sizer'>
+                                            <div className='grid-sizer' key={indexu}>
 
                                                 <div
                                                     className="grid-item"
-                                                    key={indexu}
+
                                                     onClick={() => handleOpenModal(indexu)}>
                                                     <img
                                                         className="photo-grid "

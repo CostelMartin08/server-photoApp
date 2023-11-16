@@ -65,7 +65,7 @@ const Header = (props) => {
 
 
     return (
-        <header style={props.style} className={`w-100  ${props.fileMod}`}>
+        <header className={`w-100 ${props.set} ${props.fileMod}`}>
 
             <div className="container ps-2 ">
 

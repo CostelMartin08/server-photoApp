@@ -1,0 +1,14 @@
+@supports ((-webkit-backdrop-filter: brightness(90%) blur(20px)) or (backdrop-filter: brightness(90%) blur(20px))) {
+
+    .set {
+        position: absolute;
+       left: 50%;
+        transform: translateX(-50%);
+        z-index: 76;
+        width: 100%;
+        background: transparent;
+        -webkit-backdrop-filter: brightness(90%) blur(20px);
+        backdrop-filter: brightness(90%) blur(20px);
+    }
+
+}

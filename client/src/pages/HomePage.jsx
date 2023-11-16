@@ -7,18 +7,8 @@ import CaruselMobile from "../components/CaruselMobile";
 import Details from "../components/Details";
 import MixPhoto from "../containers/MixPhoto";
 import Footer from "../components/Footer";
+import './pages.css';
 
-
-const style = {
-  headerMode: {
-    position: 'absolute',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    zIndex: 76,
-    width: '100%',
-    backdropFilter: 'brightness(90%) blur(20px)',
-  }
-}
 
 const HomePage = (props) => {
 
@@ -43,9 +33,9 @@ const HomePage = (props) => {
     <section>
       <Header
         inverse="text-light bg-white"
-        fileMod='bg-transparent'
+        fileMod=''
         theme={theme}
-        style={style.headerMode}
+        set='set'
         disconnection={props.disconnection}
         status={props.status}
       />

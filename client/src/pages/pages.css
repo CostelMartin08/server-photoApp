@@ -2,7 +2,7 @@
 
     .set {
         position: absolute;
-       left: 50%;
+        left: 50%;
         transform: translateX(-50%);
         z-index: 76;
         width: 100%;
@@ -11,4 +11,12 @@
         backdrop-filter: brightness(90%) blur(20px);
     }
 
+}
+
+
+.svg-set {
+    position: absolute;
+    z-index: 2;
+    right: -10px;
+    top: -10px;
 }

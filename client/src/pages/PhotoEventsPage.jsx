@@ -97,6 +97,21 @@ const PhotoEvents = (props) => {
                 to={`${album.title}`}
                 className="card shadow">
 
+                {Math.floor((Date.now() - album.data) / (7 * 24 * 60 * 60 * 1000)) < 3 ?
+
+                  <svg className="svg-set" width="10mm" height="10mm" xmlns="http://www.w3.org/2000/svg">
+
+                    <circle cx="5mm" cy="5mm" r="5mm" fill={theme.mod.sVg} />
+
+                    <text x="50%" y="50%" font-size="3mm" fill="#ffffff" dominant-baseline="middle" text-anchor="middle">
+                      Nou
+                    </text>
+
+                  </svg>
+                  
+                  : null
+                }
+
                 <img
                   className="full-width-image"
                   src={`https://balanandrei.ro/images/${category}/${album.title}/${album.content}`}

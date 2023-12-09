@@ -18,7 +18,7 @@ const customStorage = (details) => {
         },
         filename: function (req, file, cb) {
 
-            cb(null, `${details.category}-${file.originalname}`);
+            cb(null, `${file.originalname}`);
         },
     });
 };

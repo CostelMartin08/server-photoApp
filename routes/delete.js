@@ -56,7 +56,7 @@ router.delete('/onePhoto', checkAuthenticated, async (req, res) => {
 
     res.status(200).send('Fotografie ștearsă!');
 
-    const file = `./public/uploads/${collection.modelName}/${title}/${title}-${param}`;
+    const file = `./public/uploads/${collection.modelName}/${title}/${param}`;
 
     fs.unlink(file, (err) => {
       if (err) {

@@ -77,9 +77,11 @@ router.delete('/onePhoto', checkAuthenticated, async (req, res) => {
 
 router.delete('/:category/:id', checkAuthenticated, (req, res) => {
 
-  const { param, id } = req.param
-  let collection;
+  const param = req.params.category;
+  const id = req.params.id;
 
+  let collection;
+  
   switch (param) {
     case 'Nunti':
       collection = Nunti;

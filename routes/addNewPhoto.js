@@ -28,16 +28,35 @@ router.put("/:category/:title/:id", checkAuthenticated, (req, res, next) => {
 
 }, async (req, res) => {
 
+
+    let collection;
+    const category = req.params.category;
+
+    switch (category) {
+        case 'Nunti':
+            collection = Nunti;
+            break;
+        case 'Botezuri':
+            collection = Botezuri;
+            break;
+        case 'Diverse':
+            collection = Diverse;
+            break;
+        default:
+            res.status(404).send({ error: 'Categorie Invalida' });
+            return;
+    }
+
     try {
-      
+
         const uploadedFiles = req.file;
         const id = req.params.id;
         let filtredData = uploadedFiles.originalname;
 
         const filter = { _id: id };
-        const update = { $push: { content: filtredData} };
+        const update = { $push: { content: filtredData } };
 
-        let upd = await Nunti.findOneAndUpdate(filter, update, { new: true });
+        let upd = await collection.findOneAndUpdate(filter, update, { new: true });
 
 
         res.status(200).send('Datele au fost procesate cu succes.');

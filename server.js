@@ -17,7 +17,7 @@ const registerRouter = require('./routes/register');
 const uploadRouter = require('./routes/upload');
 const allContent = require('./routes/allContent');
 const deleteRouter = require('./routes/delete');
-
+const addNewPhoto = require('./routes/addNewPhoto');
 /* -------------------------------------------------------------------------- */
 const database = require('./schema/mongoConnect');
 require('dotenv').config();
@@ -53,6 +53,7 @@ app.use(
 app.use(cookieParser(process.env.CODE));
 app.use(passport.initialize());
 app.use(passport.session());
+
 require('./packages/passportConfig')(passport);
 
 /* -------------------------------------------------------------------------- */
@@ -65,7 +66,7 @@ app.use('/api/register', registerRouter);
 app.use('/api/galerie', uploadRouter);
 app.use('/api/allContent', allContent);
 app.use('/api/delete', deleteRouter);
-
+app.use('/api/addNew', addNewPhoto);
 
 
 app.get('/api/user', (req, res) => {

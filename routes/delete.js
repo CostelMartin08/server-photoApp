@@ -6,7 +6,7 @@ const Botezuri = require("../schema/photo2Schema");
 const Diverse = require("../schema/photo3Schema");
 const Video = require("../schema/videoSchema");
 const jwt = require('jsonwebtoken');
-
+const fs = require('fs');
 
 const checkAuthenticated = function (req, res, next) {
 
@@ -22,15 +22,64 @@ const checkAuthenticated = function (req, res, next) {
   });
 };
 
+router.delete('/onePhoto', checkAuthenticated, async (req, res) => {
 
+  try {
+
+    const { category, title, param } = req.query;
+    let collection;
+
+    switch (category) {
+      case 'Nunti':
+        collection = Nunti;
+        break;
+      case 'Botezuri':
+        collection = Botezuri;
+        break;
+      case 'Diverse':
+        collection = Diverse;
+        break;
+      default:
+        res.status(404).send({ error: 'Categorie Invalida' });
+        return;
+    }
+
+    const filter = { title: title };
+    const update = { $pull: { content: param } };
+
+    const upd = await collection.findOneAndUpdate(filter, update, { new: true });
+
+    if (!upd) {
+      res.status(404).send({ error: 'Fotografia nu a fost gasită' });
+      return;
+    }
+
+    res.status(200).send('Fotografie ștearsă!');
+
+    const file = `./public/uploads/${collection.modelName}/${title}/${title}-${param}`;
+
+    fs.unlink(file, (err) => {
+      if (err) {
+        console.error('Eroare la ștergerea fișierului:', err);
+        return;
+      }
+
+      console.log('Fișierul a fost șters cu succes!');
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(500);
+  }
+
+});
 
 
 router.delete('/:category/:id', checkAuthenticated, (req, res) => {
 
-  const param = req.params.category;
-  const id = req.params.id;
-
+  const { param, id } = req.param
   let collection;
+
   switch (param) {
     case 'Nunti':
       collection = Nunti;
@@ -46,13 +95,12 @@ router.delete('/:category/:id', checkAuthenticated, (req, res) => {
       return;
   }
 
-
   const query = { _id: id };
 
   collection.deleteOne(query)
     .then((result) => {
       if (result.deletedCount > 0) {
-        res.send({ message: 'Evenimentul a fost sters din DB!'});
+        res.send({ message: 'Evenimentul a fost sters din DB!' });
       } else {
         res.status(404).send({ error: 'Evenimentul nu a fost gasit in DB!' });
       }
@@ -79,5 +127,10 @@ router.delete('/:url', checkAuthenticated, (req, res) => {
     });
 
 });
+
+
+
+
+
 
 module.exports = router;

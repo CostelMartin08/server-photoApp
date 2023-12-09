@@ -161,3 +161,86 @@
     transform: scaleX(1);
     transform-origin: bottom left;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                 DeleteCard                                 */
+/* -------------------------------------------------------------------------- */
+
+
+.card-body {
+
+    display: flex;
+    justify-content: center;
+    color: white;
+    align-items: center;
+    height: 100dvh;
+
+}
+
+.card-del {
+    background-color: #3A6351;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    min-width: 30dvw;
+    text-align: center;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 AddNewPhoto                                */
+/* -------------------------------------------------------------------------- */
+
+
+.input-div {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    animation: flicker 2s linear infinite;
+    cursor: pointer !important;
+}
+
+.icon {
+    font-size: 2rem;
+    cursor: pointer !important;
+    animation: iconflicker 2s linear infinite;
+}
+
+.input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer !important;
+}
+
+.btn-set {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+}
+
+
+@media only screen and (max-width: 700px) {
+
+    .input-div {
+
+        width: 30px;
+        height: 30px;
+    }
+
+    .btn-set {
+        width: 50px;
+        height: 30px;
+    }
+
+
+
+}

@@ -1,18 +1,20 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import Masonry from 'masonry-layout';
-import imagesLoaded from 'imagesloaded';
 import Loaders from '../components/Loaders';
 import Header from '../containers/Header';
+import AddNewPhoto from '../containers/AddNewPhoto';
 import Footer from '../components/Footer';
 import { urlBase } from '../scripts/url';
 import './albumDetails.css';
 import { useTheme } from '../scripts/useTheme';
+import PhotoSet from '../containers/managingPhotos';
+import ScrollPhotos from '../containers/ScrollPhotos';
+
 
 
 const AlbumDetails = () => {
+
     const { title } = useParams();
     const location = useLocation();
     const navigate = useNavigate();
@@ -22,42 +24,14 @@ const AlbumDetails = () => {
     const [loading, setLoading] = useState(false);
     const [slideNumber, setSlideNumber] = useState(0);
     const [openModal, setOpenModal] = useState(false);
-    const gridRef = useRef(null);
-
-    //Evenimentul
     const [dataBrut, setDataBrut] = useState({});
-
+    const [value, setValue] = useState(false);
     const data = dataBrut.title === title;
 
-    useEffect(() => {
-
-        if (dataBrut) {
-
-            setLoading(true);
-            const grid = gridRef.current;
-
-            if (grid) {
-                const masonryInstance = new Masonry(grid, {
-                    itemSelector: '.grid-item',
-                    columnWidth: '.grid-sizer',
-                    percentPosition: true,
-                });
-                const imagesLoadedInstance = imagesLoaded(grid);
-
-                imagesLoadedInstance.on('always', () => {
-                    masonryInstance.layout();
-                });
-
-                return () => {
-                    imagesLoadedInstance.off('always');
-                    setLoading(false);
-                };
-            }
-        }
-    }, [loading, dataBrut]);
 
 
     useEffect(() => {
+
         if (!data) {
             const timer = setTimeout(() => {
                 navigate("/notFound");
@@ -70,6 +44,7 @@ const AlbumDetails = () => {
     }, [dataBrut, data, navigate]);
 
     const getData = async (even, title) => {
+
         try {
             const response = await fetch(`${urlBase}/galerie/${even}/${title}`, {
                 method: "GET",
@@ -79,6 +54,7 @@ const AlbumDetails = () => {
             if (response.ok) {
                 const data = await response.json();
                 setDataBrut(data);
+                setValue(false);
             } else {
                 const errorData = await response.json();
                 console.error("Eroare:", response.status, errorData.error);
@@ -93,159 +69,73 @@ const AlbumDetails = () => {
         getData(paramS, title);
 
 
-    }, [paramS, title]);
-
-
-
-    const handleOpenModal = (indexu) => {
-        setSlideNumber(indexu);
-        setOpenModal(true);
-    };
-
-    const handleCloseModal = () => {
-        setOpenModal(false);
-    };
-
-
-    const prevSlide = () => {
-        setSlideNumber((prevNumber) => {
-            const newNumber = prevNumber === 0 ? dataBrut.content.length - 1 : prevNumber - 1;
-            return newNumber;
-        });
-    };
-
-
-    const nextSlide = () => {
-        setSlideNumber((prevNumber) => {
-            const newNumber = prevNumber + 1 === dataBrut.content.length ? 0 : prevNumber + 1;
-            return newNumber;
-        });
-    };
-
-    const url = `${param[2]}/${dataBrut.title ? dataBrut.title : null}/${dataBrut.content ? dataBrut.content[0] : null}`;
-    const existingURL = encodeURIComponent(url) ?? 'defaultURL';
+    }, [paramS, title, value]);
 
 
     return (
-        <section className={theme.mod.bgB}>
+
+        <section
+            className={theme.mod.bgB}>
 
             <Header
                 theme={theme}
-                fileMod={theme.mod.bgHeader} />
+                fileMod={theme.mod.bgHeader}
+            />
 
-            <main className={`${theme.mod.bgB}`}>
+            <main
+                className={`${theme.mod.bgB}`}>
 
                 {data && dataBrut ? (
+
                     <>
-                        <div className="banner position-relative">
-                            <div
-                                className="bg-albumdetails"
-                                style={{ backgroundImage: `url(https://balanandrei.ro/images/${existingURL})` }}>
-                            </div>
-                            <div className='bg-content'>
-                                <h3
-                                    className="title-font mb-2">
-                                    {dataBrut.title}
-                                </h3>
-                                <p
-                                    className="text-font">
-                                    {dataBrut.description}
-                                </p>
-                            </div>
-                        </div>
+
                         {openModal && (
 
-                            <div className="sliderWrap  p-0">
+                            <ScrollPhotos
+                                dataBrut={dataBrut}
+                                setSlideNumber={setSlideNumber}
+                                slideNumber={slideNumber}
+                                setOpenModal={setOpenModal}
+                                param={param}
+                            />
 
-                                <div className="fullScreenImage vh-100">
-
-                                    <TransformWrapper initialScale={1}>
-                                        {({ zoomIn, resetTransform }) => (
-
-                                            <React.Fragment>
-                                                <div className="w-100 text-right mb-1">
-
-                                                    <button className="me-2 btn text-light"
-                                                        onClick={() => zoomIn()}>
-                                                        <i className="fa-solid fa-magnifying-glass-plus fa-xl"></i>
-                                                    </button>
-
-                                                    <button
-                                                        className="me-2 btn text-light"
-                                                        onClick={() => resetTransform()}>
-                                                        <i className="fa-solid fa-magnifying-glass-minus fa-xl"></i>
-                                                    </button>
-
-                                                    <button
-                                                        className="me-1 btn text-light"
-                                                        onClick={handleCloseModal}>
-                                                        <i className="fa-solid fa-xmark fa-2xl"></i>
-                                                    </button>
-
-                                                </div>
-                                                <TransformComponent onDoubleClick={zoomIn}>
-                                                    <img
-                                                        className="mx-auto img-fluid"
-                                                        src={`https://balanandrei.ro/images/${param[2]}/${dataBrut.title}/${dataBrut.content[slideNumber]}`}
-                                                        alt={`galery${dataBrut.content[slideNumber]}`}
-                                                    />
-                                                    <div className="arrows-bg d-flex justify-content-around">
-                                                        <div className='px-5'>
-                                                            <button onClick={prevSlide}
-                                                                className="cta px-5 ">
-                                                                <i className="fa-solid fa-arrow-left fa-lg text-light"></i>
-                                                            </button>
-                                                        </div>
-                                                        <div className='px-5'>
-                                                            <button
-                                                                onClick={nextSlide}
-                                                                className="cta px-5">
-                                                                <i className="fa-solid fa-arrow-right fa-lg text-light"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </TransformComponent>
-
-                                            </React.Fragment>
-                                        )}
-                                    </TransformWrapper>
-                                </div>
-                            </div>
                         )}
+
                         <div className="container-fluid">
-                            {loading ?
-                                <div className="masonry-grid mx-auto" ref={gridRef}>
 
 
-                                    {dataBrut.content &&
-                                        dataBrut.content.map((slide, indexu) => (
+                            <PhotoSet
 
-                                            <div className='grid-sizer' key={indexu}>
+                                loading={loading}
+                                setLoading={setLoading}
+                                dataBrut={dataBrut}
+                                param={param}
+                                setSlideNumber={setSlideNumber}
+                                setOpenModal={setOpenModal}
+                                refresh={setValue}
 
-                                                <div
-                                                    className="grid-item"
 
-                                                    onClick={() => handleOpenModal(indexu)}>
-                                                    <img
-                                                        className="photo-grid "
-                                                        src={`https://balanandrei.ro/images/${param[2]}/${dataBrut.title}/${slide}`}
-                                                        alt={`poza${indexu}`}
-                                                    />
-                                                </div>
+                            />
 
-                                            </div>
-                                        ))}
-                                </div> : <Loaders />}
+                            <AddNewPhoto
+                                theme={theme}
+                                data={dataBrut}
+                                refresh={setValue}
+                            />
+
                         </div>
+
                     </>
-                ) : (
+
+                ) :
                     <Loaders />
-                )}
+                }
             </main>
 
             <Footer
                 theme={theme}
             />
+
         </section >
     );
 }

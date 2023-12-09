@@ -54,7 +54,7 @@
 .file-input {
     width: 350px;
     max-width: 100%;
-    padding: 2px;   
+    padding: 2px;
     border-radius: 10px;
     border: 1px solid rgba(179, 164, 164, 0.288);
 }
@@ -77,4 +77,34 @@
 
 .file-input::file-selector-button:hover {
     background: #0d45a5;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                               Managing Photos                              */
+/* -------------------------------------------------------------------------- */
+
+
+.btn-delete-one {
+    display: flex;
+    justify-content: center;
+    width: 35px;
+    height: auto;
+    position: absolute;
+    left: 15px;
+    top:15px;
+    z-index: 20;
+}
+
+
+@media only screen and (max-width: 602px) {
+
+    .btn-delete-one{
+        width: 25px;
+        left: 13px;
+        top: 22px;
+    }
+
+
+
 }

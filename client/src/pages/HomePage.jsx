@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useTheme } from "../scripts/useTheme";
 import Header from "../containers/Header";
 import Carusel from "../components/Carusel";

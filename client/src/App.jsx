@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { urlBase } from "./scripts/url";
+import { ThemeProvider } from "./scripts/useTheme";
+
 import Register from './pages/RegisterPage';
 import Login from './pages/LoginPage';
 import HomePage from "./pages/HomePage";
@@ -10,8 +13,6 @@ import ControlPanel from './pages/ControlPanelPage';
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import PageNotFound from "./pages/NotFoundPage";
-import { urlBase } from "./scripts/url";
-import { ThemeProvider } from "./scripts/useTheme";
 
 const App = () => {
 
@@ -33,7 +34,7 @@ const App = () => {
     setConnection(true);
   }
   const logout = () => {
-    setToken(null);
+
     setConnection(false);
     localStorage.removeItem('status');
     localStorage.removeItem('token');
@@ -56,10 +57,11 @@ const App = () => {
   };
 
   return (
+
     <ThemeProvider>
       <Router>
         <Routes>
-          <Route path='/login' element={<Login connection={login} setToken={setToken} />} />
+          <Route path='/login' element={<Login connection={login} />} />
           <Route path='/register' element={<Register />} />
           <Route path='/' element={<HomePage disconnection={logout} status={connection} loadingData={getData} sendData={data} />} />
           <Route path='portofoliuFoto/:category/:title' element={<AlbumDetails loadingData={getData} sendData={data} />} />
@@ -72,7 +74,9 @@ const App = () => {
           <Route path='/notFound' element={<PageNotFound />} />
         </Routes>
       </Router>
+
     </ThemeProvider>
+
   );
 }
 

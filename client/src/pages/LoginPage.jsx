@@ -5,12 +5,15 @@ import { urlBase } from "../scripts/url";
 import logo from "../components/photo/logo-bg.png";
 import { routesBase } from "../scripts/routes";
 
+
 const Login = (props) => {
 
 
   const navigate = useNavigate();
+
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+
   const [error, setError] = useState();
 
   const login = async () => {
@@ -28,12 +31,16 @@ const Login = (props) => {
       });
 
       const data = await response.json();
+
       if (response.status === 200) {
+
+        props.connection();
         navigate('/');
         localStorage.setItem('status', true);
         localStorage.setItem('token', data.token);
         props.setToken(data.token);
-        props.connection();
+
+
       } else {
         const errorData = await response.json();
         setError(errorData.message);

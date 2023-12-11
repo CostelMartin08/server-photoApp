@@ -1,7 +1,5 @@
-import React from "react";
-import { Link } from 'react-router-dom';
-import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
+import { Link, useLocation  } from 'react-router-dom';
 import { urlBase } from "../scripts/url";
 import logoBG from '../components/photo/logo-bg.png';
 import { routesBase } from "../scripts/routes";
@@ -19,6 +17,7 @@ const Header = (props) => {
     const location = useLocation();
     const param = location.pathname.split('/');
     const theme = props.theme.mod;
+
     const [visibility, setVisibility] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
 

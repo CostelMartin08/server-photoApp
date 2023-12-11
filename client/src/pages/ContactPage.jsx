@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../containers/Header";
 import Footer from "../components/Footer";
 import FormMessage from "../components/FormMessage";

@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
-import { urlBase } from "../scripts/url";
 import { useTheme } from "../scripts/useTheme";
 import Header from '../containers/Header';
 import Banner from "../components/Banner";
 import SortButton from "../containers/SortButton";
 import Footer from '../components/Footer';
+import DeleteAlbum from "../containers/DeleteAlbum";
 
 
-const PhotoEvents = (props) => {
+const PhotoEvents = ({ loadingData, sendData, status }) => {
 
-  const { loadingData, sendData, status, logout } = props;
-  const token = localStorage.getItem('token');
   const theme = useTheme();
   const { category } = useParams();
   const [data, setdata] = useState([]);
   const [sort, setSort] = useState([]);
+  const [visibility, setVisibility] = useState();
+  const [param, setParam] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const PhotoEvents = (props) => {
         navigate("/notFound");
         break;
     }
-  }, [category, navigate])
+  }, [category, visibility, navigate])
 
 
 
@@ -45,29 +45,13 @@ const PhotoEvents = (props) => {
   }, [sendData])
 
 
+  const oneDelete = (param) => {
 
-  const oneDelete = async (id) => {
-    try {
-      const response = await fetch(`${urlBase}/delete/${category}/${id}`, {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        credentials: 'include',
-      });
+    setVisibility(true);
+    setParam(param);
 
-      if (response.ok) {
-        loadingData(category);
-      } else {
-        const responseData = await response.json();
-        console.error('Eroare:', responseData.error);
-      }
-    } catch (error) {
-      console.error('Eroare la stergerea evenimentului!');
-      logout();
-      navigate('/login');
-    }
-  };
+  }
+
 
   const updateSortState = (sortedAlbums) => {
     setSort(sortedAlbums);
@@ -75,71 +59,87 @@ const PhotoEvents = (props) => {
 
 
   return (
+
     <section className={theme.mod.bgB}>
+
       <Header
         theme={theme}
         fileMod={theme.mod.bgHeader}
       />
-      <Banner />
-      <main className='container px-5 my-5'>
-        <SortButton
-          theme={theme}
-          updateSort={updateSortState}
-          data={data}
+
+      {visibility ?
+
+        <DeleteAlbum
+          loadingData={loadingData}
+          setVisibility={setVisibility}
+          param={param}
         />
+        :
+        <>
+          <Banner />
+          <main className='container px-5 my-5'>
 
-        <div className="row g-4">
-          {sort.map((album, index) => (
-            <div
-              key={album._id}
-              className="col-sm-12 col-md-6 col-lg-4 position-relative">
-              <Link
-                to={`${album.title}`}
-                className="card shadow">
+            <SortButton
+              theme={theme}
+              updateSort={updateSortState}
+              data={data}
+            />
 
-                {Math.floor((Date.now() - album.data) / (7 * 24 * 60 * 60 * 1000)) < 3 ?
+            <div className="row g-4">
+              {sort.map((album, index) => (
+                <div
+                  key={album._id}
+                  className="col-sm-12 col-md-6 col-lg-4 position-relative">
+                  <Link
+                    to={`${album.title}`}
+                    className="card shadow">
 
-                  <svg className="svg-set" width="10mm" height="10mm" xmlns="http://www.w3.org/2000/svg">
+                    {Math.floor((Date.now() - album.data) / (7 * 24 * 60 * 60 * 1000)) < 3 ?
 
-                    <circle cx="5mm" cy="5mm" r="5mm" fill={theme.mod.sVg} />
+                      <svg className="svg-set" width="10mm" height="10mm" xmlns="http://www.w3.org/2000/svg">
 
-                    <text x="50%" y="50%" font-size="3mm" fill="#ffffff" dominant-baseline="middle" text-anchor="middle">
-                      Nou
-                    </text>
+                        <circle cx="5mm" cy="5mm" r="5mm" fill={theme.mod.sVg} />
 
-                  </svg>
-                  
-                  : null
-                }
+                        <text x="50%" y="50%" font-size="3mm" fill="#ffffff" dominant-baseline="middle" text-anchor="middle">
+                          Nou
+                        </text>
 
-                <img
-                  className="full-width-image"
-                  src={`https://balanandrei.ro/images/${category}/${album.title}/${album.content}`}
-                  alt={`galerie-foto${index}`}
-                />
-                <span
-                  className="text-card card-font ms-3 mb-3 h5"
-                  aria-label={album.title}>
-                  {album.title}
-                </span>
-              </Link>
-              {status ?
-                <button
-                  onClick={() => oneDelete(album._id)}
-                  className="button position-absolute me-3 bottom-0 end-0">
-                  <i className="fa-solid fa-trash fa-xl">
-                  </i>
-                </button>
-                : null}
-            </div>))}
-        </div>
-      </main>
+                      </svg>
+
+                      : null
+                    }
+
+                    <img
+                      className="full-width-image"
+                      src={`https://balanandrei.ro/images/${category}/${album.title}/${album.content}`}
+                      alt={`galerie-foto${index}`}
+                    />
+                    <span
+                      className="text-card card-font ms-3 mb-3 h5"
+                      aria-label={album.title}>
+                      {album.title}
+                    </span>
+                  </Link>
+                  {status ?
+                    <button
+                      onClick={() => oneDelete(album._id)}
+                      className="button position-absolute me-3 bottom-0 end-0">
+                      <i className="fa-solid fa-trash fa-xl">
+                      </i>
+                    </button>
+                    : null}
+                </div>))}
+            </div>
+          </main>
+
+        </>}
 
       <Footer
         theme={theme}
       />
 
     </section>
+
   );
 }
 

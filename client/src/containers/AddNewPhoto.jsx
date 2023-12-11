@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { urlBase } from '../scripts/url';
-import { useState } from 'react';
+
 
 const AddNewPhoto = ({ data, refresh, theme }) => {
 
-    const status = localStorage.getItem('status');
     const token = localStorage.getItem('token');
+    const status = localStorage.getItem('status');
     const { category } = useParams();
     const [file, setFile] = useState([]);
     const navigate = useNavigate();
     const [hidden, setHidden] = useState(false);
-
 
     const handleFileChange = (event) => {
 

@@ -1,17 +1,16 @@
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 import { urlBase } from '../scripts/url';
+import { useParams, useNavigate } from 'react-router-dom';
 
-const DeleteCardConfirm = ({ paramForMeniu, titleForMeniu, setVisibility, refresh }) => {
+const DeleteAlbum = ({ loadingData, setVisibility, param }) => {
 
-    const token = localStorage.getItem('token');
+    const token =localStorage.getItem('token');
     const { category } = useParams();
     const navigate = useNavigate();
 
-    const deletionConfirmed = async (title, param) => {
-
+    const deletionConfirmed = async (id) => {
         try {
-            const response = await fetch(`${urlBase}/delete/onePhoto?category=${category}&title=${encodeURIComponent(title)}&param=${param}`, {
+            const response = await fetch(`${urlBase}/delete/${category}/${id}`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -20,16 +19,14 @@ const DeleteCardConfirm = ({ paramForMeniu, titleForMeniu, setVisibility, refres
             });
 
             if (response.ok) {
-                refresh(true);
-                setVisibility(true)
-
-
+                loadingData(category);
+                setVisibility(false);
             } else {
                 const responseData = await response.json();
                 console.error('Eroare:', responseData.error);
             }
         } catch (error) {
-            console.error('Eroare la stergerea fotografiei!');
+            console.error('Eroare la stergerea evenimentului!');
             navigate('/login');
         }
     };
@@ -37,22 +34,23 @@ const DeleteCardConfirm = ({ paramForMeniu, titleForMeniu, setVisibility, refres
     const cancelFunction = () => {
 
         setVisibility(false);
-        refresh(true);
 
     }
 
+
     return (
+
         <>
 
             <div className='card-body'>
 
                 <div className='card-del card p-3 p-md-0'>
                     <h5 className='h3'>Ștergere</h5>
-                    <p>Fotografia selectata va fi ștearsă definitiv, <br /> dorești să continui?</p>
+                    <p className='text-size'>Albumul selectat va fi șters doar din baza de date, <br />fotografiile rămân stocate pe server dar ascunse publicului. <br /> Dorești să continui?</p>
 
                     <div className='d-flex justify-content-center gap-4'>
                         <button
-                            onClick={() => deletionConfirmed(titleForMeniu, paramForMeniu)}
+                            onClick={() => deletionConfirmed(param)}
                             className='btn btn-danger'>Șterge</button>
 
                         <butoon
@@ -63,8 +61,10 @@ const DeleteCardConfirm = ({ paramForMeniu, titleForMeniu, setVisibility, refres
 
             </div>
 
+
+
         </>
     )
 }
 
-export default DeleteCardConfirm;
+export default DeleteAlbum;

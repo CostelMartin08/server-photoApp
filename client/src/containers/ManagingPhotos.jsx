@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react';
 import Loaders from '../components/Loaders';
 import Masonry from 'masonry-layout';
 import imagesLoaded from 'imagesloaded';

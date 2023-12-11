@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
+
+
 import Header from '../containers/Header';
 import Footer from '../components/Footer';
 import UploadPhotos from "../containers/UploadPhotos"
@@ -10,6 +12,7 @@ import { useTheme } from "../scripts/useTheme";
 const ControlPanel = (props) => {
 
     const token = localStorage.getItem('token');
+
     const [textArea, uploadtextArea] = useState('');
     const [text, uploadtext] = useState(null);
     const [file, uploadfile] = useState([]);
@@ -21,7 +24,7 @@ const ControlPanel = (props) => {
     const navigate = useNavigate();
 
     const theme = useTheme();
-
+console.log(token);
     const uploadContent = async (e) => {
 
         e.preventDefault();
@@ -121,6 +124,7 @@ const ControlPanel = (props) => {
 
 
     return (
+       
         <section className={theme.mod.bgB}>
             <Header theme={theme} fileMod={theme.mod.bgHeader} disconnection={props.disconnection} status={props.status} />
             <main>

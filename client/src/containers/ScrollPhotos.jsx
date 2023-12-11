@@ -88,8 +88,6 @@ const ScrollPhotos = ({dataBrut, setSlideNumber, slideNumber, setOpenModal, para
                 </div>
             </div>
 
-
-
         </>
     )
 }

@@ -18,7 +18,13 @@ const uploadRouter = require('./routes/upload');
 const allContent = require('./routes/allContent');
 const deleteRouter = require('./routes/delete');
 const addNewPhoto = require('./routes/addNewPhoto');
-/* -------------------------------------------------------------------------- */
+/* ---------------------------------External----------------------------------------- */
+
+const shortly = require('./routes/externalApplication-Shortly');
+const mc = require('./routes/externalApplication-MC');
+
+/* ---------------------------------End----------------------------------------- */
+
 const database = require('./schema/mongoConnect');
 require('dotenv').config();
 /* -------------------------------------------------------------------------- */
@@ -38,7 +44,7 @@ app.use(express.static(publicDirectoryPath));
 
 app.use(
     cors({
-        origin: ['http://localhost:5173', 'https://martinescuconstantin.com'],
+        origin: ['http://localhost:5173', 'https://martinescuconstantin.com', 'https://costelmartin08.github.io/url-shortening-api/'],
         credentials: true,
     })
 );
@@ -67,48 +73,20 @@ app.use('/api/galerie', uploadRouter);
 app.use('/api/allContent', allContent);
 app.use('/api/delete', deleteRouter);
 app.use('/api/addNew', addNewPhoto);
+/* -------------------------------------------------------------------------- */
+/*                                  External                                  */
+/* -------------------------------------------------------------------------- */
+
+app.use('/api/shorten-url', shortly);
+app.use('/api/send-email-site', mc);
+
+/* ---------------------------------END-------------------------------------- */
 
 
 app.get('/api/user', (req, res) => {
     res.send(req.user);
 });
 
-
-app.post('/api/send-email-site', (req, res) => {
-
-    const nume = req.body.nume;
-    const email = req.body.email;
-    const subiect = req.body.subiect;
-
-
-    const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 465,
-        secure: true,
-        auth: {
-            user: process.env.EMAIL_CODE,
-            pass: process.env.EMAIL_SECRET,
-        }
-    });
-
-    const mailOptions = {
-        from: email,
-        to: 'costelmartinescu2000@gmail.com',
-        subject: `martinescuconstantin.com - ${nume}`,
-        text: `  Hei Costel! Domnul/Doamna ${nume} e interesat/interesata de serviciile tale sau de tine :))
-        Adresa de email este: ${email}.
-        Subiect: ${subiect}`,
-    };
-
-    transporter.sendMail(mailOptions, (error) => {
-        if (error) {
-            console.error(error);
-            res.status(500).json({ message: 'Eroare la trimiterea e-mailului.' });
-        } else {
-            res.json({ message: 'E-mail trimis cu succes!' });
-        }
-    });
-})
 
 
 app.post('/api/send-email', (req, res) => {
@@ -150,7 +128,6 @@ app.post('/api/send-email', (req, res) => {
         }
     });
 })
-
 
 
 

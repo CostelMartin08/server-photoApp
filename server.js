@@ -44,7 +44,7 @@ app.use(express.static(publicDirectoryPath));
 
 app.use(
     cors({
-        origin: ['http://localhost:5173', 'https://martinescuconstantin.com', 'https://costelmartin08.github.io/url-shortening-api/'],
+        origin: ['http://localhost:5173', 'https://martinescuconstantin.com', 'https://costelmartin08.github.io'],
         credentials: true,
     })
 );

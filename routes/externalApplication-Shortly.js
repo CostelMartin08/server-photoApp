@@ -27,19 +27,32 @@ router.post('/', async (req, res) => {
         };
 
         const response = await fetch(apiUrl, fetchOptions);
-        const data = await response.json();
 
+        if (!response.ok) {
+            console.error("HTTP error:", response.status, response.statusText);
+            res.status(500).json({ error: "Internal Server Error" });
+            return;
+        }
 
-        if (data.error) {
-            console.error("Eroare:", data.error);
-            res.status(500).json({ error: data.error });
-        } else {
+        const responseData = await response.text();
 
-            const shortUrl = data.result_url;
-            res.json({ shortUrl });
+        try {
+            // Try parsing the response as JSON
+            const data = JSON.parse(responseData);
+
+            if (data.error) {
+                console.error("API Error:", data.error);
+                res.status(500).json({ error: data.error });
+            } else {
+                const shortUrl = data.result_url;
+                res.json({ shortUrl });
+            }
+        } catch (jsonError) {
+            console.error("Error parsing JSON:", jsonError);
+            res.status(500).json({ error: "Internal Server Error" });
         }
     } catch (error) {
-        console.error("Eroare în timpul cererii fetch:", error);
+        console.error("Error during fetch request:", error);
         res.status(500).json({ error: "Internal Server Error" });
     }
 });

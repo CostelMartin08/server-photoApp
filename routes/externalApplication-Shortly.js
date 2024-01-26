@@ -14,7 +14,6 @@ router.post('/', async (req, res) => {
 
         const requestBody = `url=${encodedLongUrl}`;
 
-        console.log('Primul:', requestBody);
         const apiUrl = "https://cleanuri.com/api/v1/shorten";
 
         const fetchOptions = {
@@ -24,7 +23,7 @@ router.post('/', async (req, res) => {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
         };
-        console.log('al doilea:', fetchOptions.body);
+
         const response = await fetch(apiUrl, fetchOptions);
         const data = await response.json();
 

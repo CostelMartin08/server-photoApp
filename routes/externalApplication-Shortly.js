@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
         const longUrl = req.body.url;
 
         const encodedLongUrl = encodeURIComponent(longUrl);
-
+        console.log(encodedLongUrl);
         const requestBody = `url=${encodedLongUrl}`;
 
 
@@ -41,10 +41,12 @@ router.post('/', async (req, res) => {
             const data = JSON.parse(responseData);
 
             if (data.error) {
+                console.log('Erw:', data);
                 console.error("API Error:", data.error);
                 res.status(500).json({ error: data.error });
             } else {
                 const shortUrl = data.result_url;
+                console.log(shortUrl)
                 res.json({ shortUrl });
             }
         } catch (jsonError) {

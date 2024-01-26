@@ -27,6 +27,7 @@ router.post('/', async (req, res) => {
         };
 
         const response = await fetch(apiUrl, fetchOptions);
+        console.log(fetchOptions.body);
 
         if (!response.ok) {
             console.error("HTTP error:", response.status, response.statusText);

@@ -11,12 +11,11 @@ router.post('/', async (req, res) => {
         const longUrl = req.body.url;
 
         const encodedLongUrl = encodeURIComponent(longUrl);
-        console.log(encodedLongUrl);
+
         const requestBody = `url=${encodedLongUrl}`;
 
-
+        console.log('Primul:', requestBody);
         const apiUrl = "https://cleanuri.com/api/v1/shorten";
-
 
         const fetchOptions = {
             method: 'POST',
@@ -25,37 +24,21 @@ router.post('/', async (req, res) => {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
         };
-
+        console.log('al doilea:', fetchOptions.body);
         const response = await fetch(apiUrl, fetchOptions);
-        console.log(fetchOptions.body);
+        const data = await response.json();
 
-        if (!response.ok) {
-            console.error("HTTP error:", response.status, response.statusText);
-            res.status(500).json({ error: "Internal Server Error" });
-            return;
-        }
 
-        const responseData = await response.text();
+        if (data.error) {
+            console.error("Eroare:", data.error);
+            res.status(500).json({ error: data.error });
+        } else {
 
-        try {
-            // Try parsing the response as JSON
-            const data = JSON.parse(responseData);
-
-            if (data.error) {
-                console.log('Erw:', data);
-                console.error("API Error:", data.error);
-                res.status(500).json({ error: data.error });
-            } else {
-                const shortUrl = data.result_url;
-                console.log(shortUrl)
-                res.json({ shortUrl });
-            }
-        } catch (jsonError) {
-            console.error("Error parsing JSON:", jsonError);
-            res.status(500).json({ error: "Internal Server Error" });
+            const shortUrl = data.result_url;
+            res.json({ shortUrl });
         }
     } catch (error) {
-        console.error("Error during fetch request:", error);
+        console.error("Eroare în timpul cererii fetch:", error);
         res.status(500).json({ error: "Internal Server Error" });
     }
 });

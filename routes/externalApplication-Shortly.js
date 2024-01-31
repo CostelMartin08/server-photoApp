@@ -7,39 +7,53 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
     try {
-
         const longUrl = req.body.url;
 
-        const encodedLongUrl = encodeURIComponent(longUrl);
 
-        const requestBody = `url=${encodedLongUrl}`;
+        if (!isValidUrl(longUrl)) {
+            console.error("URL invalid:", longUrl);
+            return res.status(400).json({ error: "Invalid URL" });
+        }
 
-        const apiUrl = "https://cleanuri.com/api/v1/shorten";
+        const apiUrl = "https://shrtlnk.dev/api/v2/link";
+        const apiKey = "RynX9C2AGKRTLQfI4qxPFv1lg9Sxb3CkbYh0eZ9dVJERZ";
+
+        const requestBody = {
+            url: longUrl
+        };
 
         const fetchOptions = {
             method: 'POST',
-            body: requestBody,
+            body: JSON.stringify(requestBody),
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'api-key': apiKey
             },
         };
 
         const response = await fetch(apiUrl, fetchOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Eroare:", errorData.message);
+            return res.status(response.status).json({ error: errorData.message });
+        }
+
         const data = await response.json();
 
-
-        if (data.error) {
-            console.error("Eroare:", data.error);
-            res.status(500).json({ error: data.error });
-        } else {
-
-            const shortUrl = data.result_url;
-            res.json({ shortUrl });
-        }
+        const shortUrl = data.shrtlnk;
+        res.json({ shortUrl });
     } catch (error) {
         console.error("Eroare în timpul cererii fetch:", error);
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
+
+
+function isValidUrl(url) {
+
+    return true;
+}
 
 module.exports = router    

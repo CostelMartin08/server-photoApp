@@ -1,28 +1,28 @@
 {
     "id": "/index.html",
-    "name": "Example Application",
-    "short_name": "ExampleApp",
-    "description": "An example of a progressive web application.",
+    "name": "Balan Andrei Portofoliu",
+    "short_name": "Portofoliu",
+    "description": "Cele mai reprezentative colectii sunt aici.",
     "icons": [
       {
-        "src": "/icons/android-chrome-192x192.png",
+        "src": "/icons/icon1",
         "sizes": "192x192",
         "type": "image/png",
         "purpose": "any"
       },
       {
-        "src": "/icons/android-chrome-512x512.png",
+        "src": "/icons/icon2",
         "sizes": "512x512",
         "type": "image/png",
         "purpose": "any"
       },
       {
-        "src": "/icons/android-chrome-192x192.png",
+        "src": "/icons/icon1",
         "sizes": "192x192",
         "type": "image/png"
       },
       {
-        "src": "/icons/android-chrome-512x512.png",
+        "src": "/icons/icon2",
         "sizes": "512x512",
         "type": "image/png"
       }

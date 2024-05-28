@@ -1,28 +1,38 @@
 {
-    "name": "Balan Andrei",
-    "short_name": "Balan Andrei",
+    "name": "Balan Andrei Portofoliu",
+    "short_name": "Portofoliu",
+    "description": "Cele mai interesante albume",
     "icons": [
-        {
-            "src": "favicon.ico",
-            "sizes": "64x64 32x32 24x24 16x16",
-            "type": "image/x-icon",
-            "purpose": "maskable"
-        },
-        {
-            "src": "android-chrome-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "maskable"
-        },
-        {
-            "src": "android-chrome-384x384.png",
-            "sizes": "384x384",
-            "type": "image/png",
-            "purpose": "maskable"
-        }
+      {
+        "src": "/icons/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "maskable any"
+      },
+      {
+        "src": "/icons/android-chrome-384x384.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "maskable any"
+      },
+      {
+        "src": "/icons/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/android-chrome-384x384.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
     ],
-    "theme_color": "#282a29",
-    "background_color": "#282a29",
+    "start_url": "/index.html",
     "display": "standalone",
-    "orientation": "portrait"
-}
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "orientation": "portrait",
+    "scope": "/",
+    "lang": "en-US",
+    "dir": "ltr"
+  }
+  

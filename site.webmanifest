@@ -3,13 +3,19 @@
     "short_name": "Balan Andrei",
     "icons": [
         {
-            "src": "https://balanandrei.ro/pwa/android-chrome-192x192.png",
+            "src": "favicon.ico",
+            "sizes": "64x64 32x32 24x24 16x16",
+            "type": "image/x-icon",
+            "purpose": "maskable"
+        },
+        {
+            "src": "android-chrome-192x192.png",
             "sizes": "192x192",
             "type": "image/png",
             "purpose": "maskable"
         },
         {
-            "src": "https://balanandrei.ro/pwa/android-chrome-384x384.png",
+            "src": "android-chrome-384x384.png",
             "sizes": "384x384",
             "type": "image/png",
             "purpose": "maskable"

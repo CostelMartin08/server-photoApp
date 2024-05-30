@@ -14,12 +14,26 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import PageNotFound from "./pages/NotFoundPage";
 
+import { useLocation } from "react-router-dom";
+import ReactGA from 'react-ga';
+
+const usePageTracking = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.gtag('config', 'G-EZETLQXW9Q', {
+      page_path: location.pathname + location.search,
+    });
+  }, [location]);
+};
+
 const App = () => {
+
+  usePageTracking();
 
   const [connection, setConnection] = useState(false);
   const [data, setdata] = useState([]);
   const [token, setToken] = useState(null);
-
 
   useEffect(() => {
     const isLoggedIn = JSON.parse(localStorage.getItem('status')) === true;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { urlBase } from "./scripts/url";
 import { ThemeProvider } from "./scripts/useTheme";
 
@@ -13,29 +13,17 @@ import ControlPanel from './pages/ControlPanelPage';
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import PageNotFound from "./pages/NotFoundPage";
-
-{/*
-import { useLocation } from "react-router-dom";
-import ReactGA from 'react-ga';
-
-const usePageTracking = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    window.gtag('config', 'G-EZETLQXW9Q', {
-      page_path: location.pathname + location.search,
-    });
-  }, [location]);
-};
-*/}
+import { initGA, logPageView } from './analytics';
 
 const App = () => {
-
- // usePageTracking();
 
   const [connection, setConnection] = useState(false);
   const [data, setdata] = useState([]);
   const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    initGA();
+  }, []);
 
   useEffect(() => {
     const isLoggedIn = JSON.parse(localStorage.getItem('status')) === true;
@@ -76,6 +64,7 @@ const App = () => {
 
     <ThemeProvider>
       <Router>
+        <RouteChangeTracker />
         <Routes>
           <Route path='/login' element={<Login connection={login} />} />
           <Route path='/register' element={<Register />} />
@@ -95,5 +84,15 @@ const App = () => {
 
   );
 }
+
+const RouteChangeTracker = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    logPageView();
+  }, [location]);
+
+  return null;
+};
 
 export default App;

@@ -15,6 +15,16 @@ import ContactPage from "./pages/ContactPage";
 import PageNotFound from "./pages/NotFoundPage";
 import { initGA, logPageView } from './analytics';
 
+const RouteChangeTracker = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    logPageView();
+  }, [location]);
+
+  return null;
+};
+
 const App = () => {
 
   const [connection, setConnection] = useState(false);
@@ -64,8 +74,8 @@ const App = () => {
 
     <ThemeProvider>
       <Router>
-        <RouteChangeTracker />
-        <Routes>
+       <RouteChangeTracker />
+        <Routes> 
           <Route path='/login' element={<Login connection={login} />} />
           <Route path='/register' element={<Register />} />
           <Route path='/' element={<HomePage disconnection={logout} status={connection} loadingData={getData} sendData={data} />} />
@@ -85,14 +95,6 @@ const App = () => {
   );
 }
 
-const RouteChangeTracker = () => {
-  const location = useLocation();
 
-  useEffect(() => {
-    logPageView();
-  }, [location]);
-
-  return null;
-};
 
 export default App;

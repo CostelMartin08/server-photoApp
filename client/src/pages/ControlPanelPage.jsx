@@ -24,7 +24,7 @@ const ControlPanel = (props) => {
     const navigate = useNavigate();
 
     const theme = useTheme();
-console.log(token);
+
     const uploadContent = async (e) => {
 
         e.preventDefault();

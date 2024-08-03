@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 import { urlBase } from '../scripts/url';
 import './albumDetails.css';
 import { useTheme } from '../scripts/useTheme';
-import PhotoSet from '../containers/managingPhotos';
+import PhotoSet from '../containers/ManagingPhotos';
 import ScrollPhotos from '../containers/ScrollPhotos';
 
 

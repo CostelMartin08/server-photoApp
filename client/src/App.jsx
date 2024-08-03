@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useParams } from 'react-router-dom';
 import { urlBase } from "./scripts/url";
 import { ThemeProvider } from "./scripts/useTheme";
 
@@ -13,13 +13,16 @@ import ControlPanel from './pages/ControlPanelPage';
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import PageNotFound from "./pages/NotFoundPage";
-import { initGA, logPageView } from './analytics';
+import { logPageView } from './analytics';
 
 const RouteChangeTracker = () => {
+
   const location = useLocation();
 
   useEffect(() => {
-    logPageView();
+
+    logPageView(location.pathname);
+
   }, [location]);
 
   return null;
@@ -30,10 +33,6 @@ const App = () => {
   const [connection, setConnection] = useState(false);
   const [data, setdata] = useState([]);
   const [token, setToken] = useState(null);
-
-  useEffect(() => {
-    initGA();
-  }, []);
 
   useEffect(() => {
     const isLoggedIn = JSON.parse(localStorage.getItem('status')) === true;

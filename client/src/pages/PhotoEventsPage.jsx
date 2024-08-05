@@ -100,7 +100,7 @@ const PhotoEvents = ({ loadingData, sendData, status }) => {
 
                         <circle cx="5mm" cy="5mm" r="5mm" fill={theme.mod.sVg} />
 
-                        <text x="50%" y="50%" font-size="3mm" fill="#ffffff" dominant-baseline="middle" text-anchor="middle">
+                        <text x="50%" y="50%" fontSize="3mm" fill="#ffffff" dominantBaseline="middle" textAnchor="middle">
                           Nou
                         </text>
 

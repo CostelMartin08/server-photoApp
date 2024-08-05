@@ -1,14 +1,12 @@
 import React from 'react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import { useSwipeable } from 'react-swipeable';
 
-
-
-const ScrollPhotos = ({dataBrut, setSlideNumber, slideNumber, setOpenModal, param}) => {
+const ScrollPhotos = ({ dataBrut, setSlideNumber, slideNumber, setOpenModal, param }) => {
 
     const handleCloseModal = () => {
         setOpenModal(false);
     };
-
 
     const prevSlide = () => {
         setSlideNumber((prevNumber) => {
@@ -17,7 +15,6 @@ const ScrollPhotos = ({dataBrut, setSlideNumber, slideNumber, setOpenModal, para
         });
     };
 
-
     const nextSlide = () => {
         setSlideNumber((prevNumber) => {
             const newNumber = prevNumber + 1 === dataBrut.content.length ? 0 : prevNumber + 1;
@@ -25,70 +22,87 @@ const ScrollPhotos = ({dataBrut, setSlideNumber, slideNumber, setOpenModal, para
         });
     };
 
-
+    const handlers = useSwipeable({
+        onSwipedLeft: nextSlide,
+        onSwipedRight: prevSlide,
+        preventDefaultTouchmoveEvent: true,
+        trackMouse: true
+    });
 
     return (
-        <>
 
-            <div className="sliderWrap  p-0">
+        <div className="sliderWrap">
 
+            <section className='position-element'>
 
-                <div className="fullScreenImage vh-100">
+                <div className="fullScreenImage">
 
-                    <TransformWrapper initialScale={1}>
+                    <TransformWrapper
+                        smooth={true}
+                        disablePadding={true}
+                        initialScale={1}>
+
                         {({ zoomIn, resetTransform }) => (
 
                             <React.Fragment>
-                                <div className="w-100 text-right mb-1">
+                                <div className="control-button d-flex gap-3">
 
-                                    <button className="me-2 btn text-light"
+                                    <button
                                         onClick={() => zoomIn()}>
                                         <i className="fa-solid fa-magnifying-glass-plus fa-xl"></i>
                                     </button>
 
-                                    <button
-                                        className="me-2 btn text-light"
-                                        onClick={() => resetTransform()}>
+                                    <button onClick={() => resetTransform()}>
                                         <i className="fa-solid fa-magnifying-glass-minus fa-xl"></i>
                                     </button>
 
-                                    <button
-                                        className="me-1 btn text-light"
-                                        onClick={handleCloseModal}>
+                                    <button onClick={handleCloseModal}>
                                         <i className="fa-solid fa-xmark fa-2xl"></i>
                                     </button>
 
                                 </div>
-                                <TransformComponent onDoubleClick={zoomIn}>
-                                    <img
-                                        className="mx-auto img-fluid"
-                                        src={`https://balanandrei.ro/images/${param[2]}/${dataBrut.title}/${dataBrut.content[slideNumber]}`}
-                                        alt={`galery${dataBrut.content[slideNumber]}`}
-                                    />
-                                    <div className="arrows-bg d-flex justify-content-around">
-                                        <div className='px-5'>
-                                            <button onClick={prevSlide}
-                                                className="cta px-5 ">
-                                                <i className="fa-solid fa-arrow-left fa-lg text-light"></i>
-                                            </button>
-                                        </div>
-                                        <div className='px-5'>
-                                            <button
-                                                onClick={nextSlide}
-                                                className="cta px-5">
-                                                <i className="fa-solid fa-arrow-right fa-lg text-light"></i>
-                                            </button>
-                                        </div>
+
+                                <TransformComponent
+                                    onDoubleClick={zoomIn}>
+
+                                    <div {...handlers}>
+                                        <img
+                                            src={`https://balanandrei.ro/images/${param[2]}/${dataBrut.title}/${dataBrut.content[slideNumber]}`}
+                                            alt={`galery${dataBrut.content[slideNumber]}`}
+                                        />
+
                                     </div>
+
                                 </TransformComponent>
+
+
+                                <div className="d-flex arrows-bg justify-content-around">
+                                    <div className='p-3'>
+                                        <button
+                                            onClick={prevSlide}
+                                            className="bg-transparent border-0">
+                                            <i className="fa-solid fa-arrow-left fa-lg text-light"></i>
+                                        </button>
+                                    </div>
+                                    <div className='p-3'>
+                                        <button
+                                            onClick={nextSlide}
+                                            className="bg-transparent border-0">
+                                            <i className="fa-solid fa-arrow-right fa-lg text-light"></i>
+                                        </button>
+                                    </div>
+                                </div>
 
                             </React.Fragment>
                         )}
-                    </TransformWrapper>
-                </div>
-            </div>
 
-        </>
+                    </TransformWrapper>
+
+                </div>
+
+            </section>
+
+        </div>
     )
 }
 

@@ -17,11 +17,6 @@ const VideoDetails = (props) => {
     const [update, setUpdate] = useState(false);
     const theme = useTheme();
 
-    const style = {
-        videoSize: {
-            width: "530px",
-        }
-    }
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -67,75 +62,75 @@ const VideoDetails = (props) => {
 
     const videoD = () => {
         return (
-            video ? video.map((onevideo, index) => (
+            video && video.map((onevideo, index) => (
 
-                <div
+                <section
                     key={index}
-                    className="d-flex my-3 col-md-6 p-0 justify-content-center align-items-center">
-                    <div className="ms-1 position-relative" style={style.videoSize}>
-
-
-                        {Math.floor((Date.now() - onevideo.data) / (7 * 24 * 60 * 60 * 1000)) < 3 ?
-                            <svg className="svg-set" width="10mm" height="10mm" xmlns="http://www.w3.org/2000/svg">
-
-                                <circle cx="5mm" cy="5mm" r="5mm" fill={theme.mod.sVg} />
-
-                                <text x="50%" y="50%" fontSize="3mm" fill="#ffffff" dominantBaseline="middle" textAnchor="middle">
-                                    Nou
-                                </text>
-
-                            </svg>
-                            : null
-                        }
-
-
-                        <iframe
-                            className="video-size"
-                            src={onevideo.url}
-                            title={onevideo.url}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowFullScreen>
-                        </iframe>
-
-                        {props.status ?
-                            <button
-                                onClick={() => deleteVideo(onevideo._id)}
-                                className="button position-absolute me-1 bottom-0 end-0">
-                                <i className="fa-solid fa-trash fa-xl"></i>
-                            </button>
-                            : null}
-                    </div>
-                </div>
-            )
-            ) : <Loaders />)
+                    className="position-relative w-100 h-100">
+    
+                    {Math.floor((Date.now() - new Date(onevideo.data)) / (7 * 24 * 60 * 60 * 1000)) < 3 &&
+                        <svg className="svg-set" width="10mm" height="10mm" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="5mm" cy="5mm" r="5mm" fill={theme.mod.sVg} />
+                            <text x="50%" y="50%" fontSize="3mm" fill="#ffffff" dominantBaseline="middle" textAnchor="middle">
+                                Nou
+                            </text>
+                        </svg>
+                    }
+    
+                    <iframe className="w-100 h-100"
+                        src={onevideo.url}
+                        title={`video-${index}`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen>
+                    </iframe>
+    
+                    {props.status &&
+                        <button
+                            onClick={() => deleteVideo(onevideo._id)}
+                            className="button position-absolute me-1 bottom-0 end-0">
+                            <i className="fa-solid fa-trash fa-xl"></i>
+                        </button>
+                    }
+                </section>
+            ))
+        );
 
     }
 
     return (
+
         <section className={theme.mod.bgB}>
+
             <Header theme={theme} fileMod={theme.mod.bgHeader} />
+
             <div className="container">
-                <div className="row mt-3">
-                    <div className="col-12 align-items-center justify-content-center p-0">
-                        <div className="container d-flex mx-auto flex-column align-items-left  p-0">
-                            <h2 className={`title-font ms-3`}>
-                                Portofoliu Video
-                                <hr className={`${theme.mod.bg} pt-1 mx-1`} />
-                            </h2>
-                        </div>
+
+                <div className="mt-4">
+                    <div className="container d-flex mx-auto flex-column align-items-left p-0">
+
+                        <h2 className='title-font'>
+                            Portofoliu Video
+                            <hr className={`${theme.mod.bg} pt-1 mx-1`} />
+                        </h2>
+
                     </div>
-                    <div className=" container d-flex justify-content-end text-center  py-4">
-                        <Link
-                            to={routesBase.portofoliuFotoBotezuri}
-                            className="cta text-decoration-none">
-                            <span className={`${theme.mod.contrastText} p-0  hover-underline-animation text-font fs-6`}> Vezi Portofoliu Foto </span>
-                        </Link>
-                    </div>
-                    {Array.isArray(video) ? videoD() : <Loaders />}
                 </div>
+
+                <div className="container d-flex justify-content-end text-center py-4 px-0">
+                    <Link
+                        to={routesBase.portofoliuFotoBotezuri}
+                        className="cta text-decoration-none">
+                        <span className={`${theme.mod.contrastText} p-0  hover-underline-animation text-font fs-6`}> Vezi Portofoliu Foto </span>
+                    </Link>
+                </div>
+
+                <section className="grid-section">
+                    {Array.isArray(video) ? videoD() : <Loaders />}
+                </section>
 
             </div>
             <Footer theme={theme} />
+            
         </section >
     );
 }

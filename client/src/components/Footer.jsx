@@ -52,6 +52,7 @@ const Footer = (props) => {
                         <ul className="p-0 m-0">
                             <li>
                                 <a
+                                    aria-label="instagram"
                                     href="https://www.instagram.com/andrei.vdr/"
                                     type="button"
                                     className="btn text-light">
@@ -59,14 +60,18 @@ const Footer = (props) => {
                                         className="fa-brands fa-instagram fa-xl">
                                     </i>
                                 </a>
-                                <a href="https://www.facebook.com/profile.php?id=100065019240579"
+                                <a
+                                    aria-label="facebook"
+                                    href="https://www.facebook.com/profile.php?id=100065019240579"
                                     type="button"
                                     className="btn text-light">
                                     <i
                                         className="fa-brands fa-facebook fa-xl">
                                     </i>
                                 </a>
-                                <a href="https://www.youtube.com/@andrei_balan"
+                                <a
+                                    aria-label="youtube"
+                                    href="https://www.youtube.com/@andrei_balan"
                                     type="button"
                                     className="btn text-light">
                                     <i

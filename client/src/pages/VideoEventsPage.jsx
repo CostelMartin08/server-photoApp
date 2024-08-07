@@ -103,7 +103,7 @@ const VideoDetails = (props) => {
 
             <Header theme={theme} fileMod={theme.mod.bgHeader} />
 
-            <div className="container">
+            <div className="container pb-3">
 
                 <div className="mt-4">
                     <div className="container d-flex mx-auto flex-column align-items-left p-0">

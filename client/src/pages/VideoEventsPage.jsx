@@ -148,7 +148,7 @@ const VideoDetails = (props) => {
                                                         className="thumbnail-overlay position-absolute w-100 h-100 d-flex justify-content-center align-items-center"
                                                         onClick={() => handlePlay(index)}
                                                         style={{
-                                                            backgroundImage: onevideo.thumbnail ? `url(${decodeURIComponent(onevideo.thumbnail)})` : "none",
+                                                            backgroundImage: onevideo.thumbnail ? `url(/portofoliuVideo/${onevideo.thumbnail})` : "none",
                                                             backgroundSize: "cover",
                                                             backgroundPosition: "center",
                                                             cursor: "pointer",

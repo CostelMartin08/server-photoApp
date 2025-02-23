@@ -7,6 +7,7 @@ const Botezuri = require("../schema/photo2Schema");
 const Diverse = require("../schema/photo3Schema");
 const Video = require("../schema/videoSchema");
 const jwt = require('jsonwebtoken');
+const path = require('path'); 
 
 
 const checkAuthenticated = function (req, res, next) {
@@ -255,22 +256,24 @@ router.post("/", checkAuthenticated, upload.fields([
 
 });
 
+
 router.post('/video', upload.fields([{ name: 'thumbnail', maxCount: 1 }]), async (req, res) => {
     const { category, title, description, favorite, titlex } = req.body;
     let thumbnailPath = req.files['thumbnail'] ? req.files['thumbnail'][0].path : null; 
 
-    if (!category  || !thumbnailPath) {
+    if (!category || !thumbnailPath) {
         return res.status(400).send({ error: 'Unele campuri sunt necesare!' });
     }
 
-    thumbnailPath = thumbnailPath.replace(/\\/g, "/");
 
+    const thumbnailName = path.basename(thumbnailPath);
+    
     try {
         const newVideo = new Video({
             title: titlex, 
             description,
             url: title, 
-            thumbnail: thumbnailPath, 
+            thumbnail: thumbnailName, 
             category,
             favorite: favorite === 'true'
         });
@@ -282,6 +285,7 @@ router.post('/video', upload.fields([{ name: 'thumbnail', maxCount: 1 }]), async
         res.status(500).send({ error: 'Eroare la încărcarea videoclipului!' });
     }
 });
+
 
 
 module.exports = router    

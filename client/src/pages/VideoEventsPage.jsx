@@ -151,8 +151,9 @@ const VideoDetails = (props) => {
                                                             backgroundImage: onevideo.thumbnail ? `url(/portofoliuVideo/${onevideo.thumbnail})` : "none",
                                                             backgroundSize: "cover",
                                                             backgroundPosition: "center",
+                                                            borderRadius: '15px',
                                                             cursor: "pointer",
-                                                            zIndex: 2
+                                                            zIndex: 0
                                                         }}
                                                     >
                                                         <button className="play-button">

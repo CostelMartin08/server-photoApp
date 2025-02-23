@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import { Link, useLocation  } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from 'react-router-dom';
 import { urlBase } from "../scripts/url";
 import logoBG from '../components/photo/logo-bg.png';
 import { routesBase } from "../scripts/routes";
@@ -103,7 +103,7 @@ const Header = (props) => {
                                 <Link className={`nav-link ${location.pathname === "/" ? theme.border : " "}`} aria-current="page" to={routesBase.home}>Acasă</Link>
                             </li>
                             <li className="nav-item dropdown mx-auto p-0 ">
-                                <Link
+                            <Link
                                     className={`nav-link px-3 dropdown  dropdown-toggle ${param[1] === "portofoliuFoto" ? theme.border : " "}`} data-bs-toggle="dropdown" aria-expanded="true"
                                 >Portofoliu Foto
                                 </Link>
@@ -134,12 +134,43 @@ const Header = (props) => {
                                     </li>
                                 </ul>
                             </li>
-                            <li className="nav-item mx-auto ">
+                            <li className="nav-item dropdown mx-auto p-0">
                                 <Link
-                                    to={routesBase.portofoliuVideoDiverse}
-                                    className={`nav-link  ${param[1] === "portofoliuVideo" ? theme.border : " "}`} aria-expanded="false"
-                                >Portofoliu Video
+                                    className={`nav-link px-3 dropdown dropdown-toggle ${param[1] === "portofoliuVideo" ? theme.border : ""}`}
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="true"
+                                >
+                                    Portofoliu Video
                                 </Link>
+                                <ul className={`${theme.bg} bg-dropdown dropdown-menu mt-lg-4`}>
+                                    <li>
+                                        <Link
+                                            to={routesBase.portofoliuVideoNunti}
+                                            onClick={removeShow}
+                                            className={`dropdown-item ${theme.bg}`}
+                                        >
+                                            Nunți
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            to={routesBase.portofoliuVideoBotezuri}
+                                            onClick={removeShow}
+                                            className={`dropdown-item ${theme.bg}`}
+                                        >
+                                            Botezuri
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            to={routesBase.portofoliuVideoDiverse2}
+                                            onClick={removeShow}
+                                            className={`dropdown-item ${theme.bg}`}
+                                        >
+                                            Comercial
+                                        </Link>
+                                    </li>
+                                </ul>
                             </li>
                             <li className="nav-item mx-auto ">
                                 <Link

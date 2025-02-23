@@ -4,6 +4,8 @@ import { urlBase } from "../scripts/url";
 import { routesBase } from "../scripts/routes";
 
 
+import button from './button.svg';
+
 const MixPhoto = (props) => {
 
 
@@ -148,8 +150,8 @@ const MixPhoto = (props) => {
             <div className="container d-flex justify-content-end text-center mt-3 ">
                 <Link
                     to={routesBase.portofoliuFotoNunti}
-                    className='cta me-3 me-md-0 mb-3 text-decoration-none'>
-                    <span className={`${theme.contrastText} pe-0 hover-underline-animation text-font fs-6`}> Vezi mai multe </span>
+                    className='cta me-3 me-md-0 mb-3  btn-apart text-decoration-none'>
+                    <span className={`${theme.contrastText} p-0  text-font fs-6`}> Vezi mai multe <img src={button} alt="button"/> </span>
 
                 </Link>
             </div>

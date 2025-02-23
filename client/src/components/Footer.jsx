@@ -37,7 +37,7 @@ const Footer = (props) => {
                             <li>
                                 <small
                                     className="text-white"
-                                >+40742490856
+                                ><a className="text-white" href="tel:+40742490856">+40742490856</a>
                                 </small>
                             </li>
                             <li>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 
 import Header from '../containers/Header';
@@ -8,6 +8,7 @@ import SuccessMessage from "../components/SuccessMessage";
 import { useNavigate } from "react-router-dom";
 import { urlBase } from "../scripts/url";
 import { useTheme } from "../scripts/useTheme";
+import UploadVideos from "../containers/UploadVideos";
 
 const ControlPanel = (props) => {
 
@@ -18,9 +19,21 @@ const ControlPanel = (props) => {
     const [file, uploadfile] = useState([]);
     const [select, uploadSelect] = useState(null);
     const [response, setResponse] = useState(false);
-    const [video, uploadVideo] = useState(null);
+
     const [error, setError] = useState(undefined);
-    const [favorite, setFavorite] = useState(false);
+    const [favorite, setFavorite] = useState(false);    
+    
+    
+    const [title, setTitle] = useState(null);
+    const [textAreaV, uploadtextAreaV] = useState('');
+    const [textV, uploadtextV] = useState(null);
+    const [selectV, uploadSelectV] = useState(null);
+    const [thumbnail, uploadThumbnail] = useState(null);
+    const [responseV, setResponseV] = useState(false);
+    const [errorV, setErrorV] = useState(undefined);
+    const [favoriteV, setFavoriteV] = useState(false);    
+
+
     const navigate = useNavigate();
 
     const theme = useTheme();
@@ -81,12 +94,23 @@ const ControlPanel = (props) => {
     };
 
     const uploadVideoZ = async (e) => {
-
         e.preventDefault();
+    
+        if (!selectV || !thumbnail || !textV) {
+            setErrorV("Completează toate câmpurile!");
+            return;
+        }
+    
         const formData = new FormData();
-        formData.append("inputVideo", video);
+        formData.append("category", selectV); 
+        formData.append("thumbnail", thumbnail); 
+        formData.append("title", textV); 
+        formData.append("description", textAreaV); 
+        formData.append("favorite", favoriteV); 
+        formData.append("titlex", title); 
 
-        try {
+
+          try {
             const response = await fetch(`${urlBase}/galerie/video`, {
                 method: "POST",
                 credentials: "include",
@@ -95,18 +119,20 @@ const ControlPanel = (props) => {
                 },
                 body: formData,
             });
+    
             if (response.ok) {
-                setResponse(true);
-            }
-            else {
+                setResponseV(true); 
+                setErrorV(null); 
+            } else {
                 const errorData = await response.json();
                 console.error("Eroare:", response.status, errorData.error);
-                setError(errorData.error);
+                setErrorV(errorData.error); 
+                console.log(errorData.error);
             }
         } catch (error) {
             props.disconnection();
             navigate('/login');
-            console.error(error.message)
+            console.error(error.message);
         }
     };
 
@@ -119,17 +145,25 @@ const ControlPanel = (props) => {
             uploadSelect(undefined);
             setFavorite(false);
         }
+        else if (responseV) {
+            uploadtextV(null);
+            uploadThumbnail(null);
+            uploadtextAreaV(null);
+            uploadSelectV(undefined);
+            setFavoriteV(false);
+            setTitle(null);
+        }
 
-    }, [response])
+    }, [response, responseV])
 
 
     return (
-       
+
         <section className={theme.mod.bgB}>
             <Header theme={theme} fileMod={theme.mod.bgHeader} disconnection={props.disconnection} status={props.status} />
             <main>
                 <div className=" pt-5">
-                    {!response ?
+                    {!response & !responseV ?
                         <div className="row w-100 m-0 mb-5 align-items-center justify-content-center">
                             <div className="col-12 col-md-5">
 
@@ -150,38 +184,22 @@ const ControlPanel = (props) => {
                                 <div className="d-flex flex-column align-items-center">
                                     <div className={`box-mdl ${theme.mod.bg}`}>
                                         <form method="post" action="/galerie/video" encType="multipart/form-data" onSubmit={uploadVideoZ}>
-                                            <span
-                                                className="form-title text-white"
-                                            >Încarcă video
-                                            </span>
-                                            <p
-                                                className="text-danger"
-                                            >{props.error}
-                                            </p>
-                                            <div className="drop-container my-3 ">
-                                                <input
-                                                    className={`file-input text-white ${theme.mod.bgHeader}`}
-                                                    type="text"
-                                                    onChange={(e) => uploadVideo(e.target.value)}
-                                                    name="inputVideo"
-                                                    id="VideoInput"
-                                                    placeholder="Introdu URL-ul" >
-                                                </input>
-                                            </div>
-                                            <label className="drop-container text-white" htmlFor="select">Destinatia:
-                                                <select name="select" id="select" className={`file-input text-white ${theme.mod.bgHeader}`}>
-                                                    <option value="">Alege colecția</option>
-                                                    <option value="Diverse">Portofoliu Video</option>
-
-                                                </select>
-                                            </label>
-                                            <button className="btn btn-outline-light w-100 py-2 my-3" type="submit">Postează</button>
+                                        < UploadVideos
+                                        theme={theme}
+                                        uploadfile={uploadThumbnail}
+                                        uploadContent={uploadVideoZ}
+                                        uploadtext={uploadtextV}
+                                        uploadtextx={setTitle}
+                                        uploadtextArea={uploadtextAreaV}
+                                        uploadSelect={uploadSelectV}
+                                        setFavorite={setFavoriteV}
+                                        error={errorV} />
                                         </form>
 
                                     </div>
                                 </div>
                             </div>
-                        </div> : <SuccessMessage setResponse={setResponse} />}
+                        </div> : <SuccessMessage setResponse={setResponse} setResponseV={setResponseV} />}
 
                 </div>
             </main>

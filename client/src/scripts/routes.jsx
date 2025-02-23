@@ -13,6 +13,9 @@ const routesBase = {
     portofoliuFotoDiverse: '/portofoliuFoto/Diverse',
     portofoliuFoto: ['/portofoliuFoto/Nunti', '/portofoliuFoto/Botezuri', '/portofoliuFoto/Diverse'],
     portofoliuVideoDiverse: '/portofoliuVideo',
+    portofoliuVideoNunti: '/portofoliuVideo/Nunti',
+    portofoliuVideoBotezuri: '/portofoliuVideo/Botezuri',
+    portofoliuVideoDiverse2: '/portofoliuVideo/Comercial',
 }
 
 export { routesBase };

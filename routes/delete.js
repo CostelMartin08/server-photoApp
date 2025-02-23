@@ -8,6 +8,8 @@ const Video = require("../schema/videoSchema");
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
+const { deleteThumbnail } = require("../packages/deletethub.js");
+
 const checkAuthenticated = function (req, res, next) {
 
   const token = req.headers.authorization.split(' ')[1];
@@ -113,24 +115,26 @@ router.delete('/:category/:id', checkAuthenticated, (req, res) => {
     });
 });
 
-router.delete('/:url', checkAuthenticated, (req, res) => {
+router.delete("/:id", checkAuthenticated, async (req, res) => {
+  try {
+      const { id } = req.params;
+      const video = await Video.findById(id);
 
-  const url = req.params.url;
+      if (!video) {
+          return res.status(404).json({ error: "Videoclipul nu a fost găsit!" });
+      }
 
-  const query = { _id: url };
+      deleteThumbnail(video.thumbnail);
 
-  Video.deleteOne(query)
-    .then((result) => {
-      res.send({ message: 'Videoclipul a fost sters din DB!' });
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500);
-    });
+      await Video.deleteOne({ _id: id });
 
+      res.json({ message: "Videoclipul și thumbnail-ul au fost șterse cu succes!" });
+
+  } catch (err) {
+      console.error("❌ Eroare la ștergere:", err);
+      res.status(500).json({ error: "Eroare la ștergerea videoclipului!" });
+  }
 });
-
-
 
 
 

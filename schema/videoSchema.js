@@ -1,14 +1,15 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
+const videoSchema = new mongoose.Schema({
+    title: { type: String, required: false },
+    description: { type: String, required: false },
+    thumbnail:{type: String},
+    url: { type: String, required: true },
+    data: { type: Date, default: Date.now }, 
+    category: { type: String, required: true }, 
+    favorite: {type: Boolean},
+});
 
-const Video = new mongoose.Schema({
-    url: String,
-    data: Number,
+const Video = mongoose.model('Video-Category', videoSchema);
 
-},
-    {
-        collection: "Video",
-    },);
-
-
-module.exports = mongoose.model("Video", Video);
+module.exports = Video;

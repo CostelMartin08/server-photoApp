@@ -50,7 +50,7 @@
     text-align: center;
     transition: color .2s ease-in-out;
 }
-
+.file-input-2,
 .file-input {
     width: 350px;
     max-width: 100%;
@@ -59,7 +59,7 @@
     border: 1px solid rgba(179, 164, 164, 0.288);
 }
 
-
+.file-input-2::file-selector-button,
 .file-input::file-selector-button {
     margin-right: 20px;
     border: none;
@@ -70,11 +70,11 @@
     cursor: pointer;
 
 }
-
+.file-input-2::placeholder,
 .file-input::placeholder {
     color: white;
 }
-
+.file-input-2::file-selector-button:hover,
 .file-input::file-selector-button:hover {
     background: #0d45a5;
 }

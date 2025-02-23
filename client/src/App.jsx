@@ -81,7 +81,7 @@ const App = () => {
           <Route path='portofoliuFoto/:category/:title' element={<AlbumDetails loadingData={getData} sendData={data} />} />
           <Route path='/controlPanel' element={connection ? (<ControlPanel status={connection} disconnection={logout} />) : (<PageNotFound />)} />
           <Route path='portofoliuFoto/:category' element={<PhotoEvents loadingData={getData} sendData={data} status={connection} logout={logout} />} />
-          <Route path='/portofoliuVideo' element={<VideoDetails status={connection} logout={logout} />} />
+          <Route path='/portofoliuVideo/:category' element={<VideoDetails loadingData={getData} sendData={data} status={connection} logout={logout} />} />
           <Route path='/despreMine' element={<AboutPage />} />
           <Route path='/contact' element={<ContactPage />} />
           <Route path='*' element={<PageNotFound />} />

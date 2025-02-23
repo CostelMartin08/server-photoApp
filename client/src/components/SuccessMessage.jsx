@@ -7,6 +7,7 @@ const SuccessMessage = (props) => {
 
     const event = () => {
         props.setResponse(false);
+        props.setResponseV(false);
     }
 
     return (

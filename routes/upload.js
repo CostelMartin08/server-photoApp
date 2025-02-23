@@ -23,7 +23,7 @@ const checkAuthenticated = function (req, res, next) {
     });
 };
 
-
+/*
 router.get('/video', (req, res) => {
 
     Video.find({})
@@ -38,6 +38,39 @@ router.get('/video', (req, res) => {
         });
 
 
+});
+
+*/
+
+router.get("/video/:parametruURL", (req, res) => {
+    const param = req.params.parametruURL;
+
+    const validCategories = ["Nunti", "Botezuri", "Diverse"];
+    if (!validCategories.includes(param)) {
+        res.status(404).send({ error: 'Categorie invalidă!' });
+        return;
+    }
+
+    Video.find({ category: param })
+        .then((videos) => {
+            if (videos.length === 0) { 
+                res.status(404).send({ error: 'Nu s-au găsit videoclipuri în această categorie!' });
+            } else {
+                const selectedFields = videos.map((video) => ({
+                    _id: video._id,
+                    title: video.title,
+                    description: video.description,
+                    thumbnail: video.thumbnail,
+                    url: video.url,
+                    data: video.data,
+                }));
+                res.send(selectedFields);
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).send({ error: 'Eroare la încărcarea videoclipurilor!' });
+        });
 });
 
 router.get("/:parametruURL", (req, res) => {
@@ -222,22 +255,32 @@ router.post("/", checkAuthenticated, upload.fields([
 
 });
 
-router.post('/video', upload.none(), checkAuthenticated, (req, res) => {
+router.post('/video', upload.fields([{ name: 'thumbnail', maxCount: 1 }]), async (req, res) => {
+    const { category, title, description, favorite, titlex } = req.body;
+    let thumbnailPath = req.files['thumbnail'] ? req.files['thumbnail'][0].path : null; 
 
-    const time = Date.now();
+    if (!category  || !thumbnailPath) {
+        return res.status(400).send({ error: 'Unele campuri sunt necesare!' });
+    }
 
-    const newVideo = new Video({
-        url: req.body.inputVideo,
-        data: time,
-    });
-    Video.create(newVideo)
-        .then((createdVideo) => {
-            res.sendStatus(200);
-        })
-        .catch((error) => {
-            res.sendStatus(500);
-            console.error(error);
-        })
+    thumbnailPath = thumbnailPath.replace(/\\/g, "/");
+
+    try {
+        const newVideo = new Video({
+            title: titlex, 
+            description,
+            url: title, 
+            thumbnail: thumbnailPath, 
+            category,
+            favorite: favorite === 'true'
+        });
+
+        await newVideo.save();
+        res.status(200).send({ message: 'Videoclip încărcat cu succes!' });
+    } catch (error) {
+        console.error('Eroare la încărcare:', error);
+        res.status(500).send({ error: 'Eroare la încărcarea videoclipului!' });
+    }
 });
 
 

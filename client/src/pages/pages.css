@@ -49,3 +49,19 @@
 
 
 }
+
+@media only screen and (max-width: 768px) {
+    .svg-set {
+
+        right: 0px;
+     
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .svg-set {
+
+        right: 5px;
+     
+    }
+}

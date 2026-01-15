@@ -35,58 +35,53 @@ const CaruselMobile = (props) => {
 
 
                 
-                        <SwiperSlide>
+            <SwiperSlide>
                 <picture className="swiper-zoom-container">
-                    <img className="carusel-img img-fluid" src="/uploads/carousel--5mobile.webp" alt="foto-majorat" />
+                    <img className="carusel-img img-fluid" src="/uploads/carousel--5mobile.webp" alt="foto1" />
                 </picture>
             </SwiperSlide>
 
-                                   <SwiperSlide>
+             <SwiperSlide>
                 <picture className="swiper-zoom-container">
-                    <img className="carusel-img img-fluid" src="/uploads/carousel--6mobile.webp" alt="foto-majorat" />
-                </picture>
-            </SwiperSlide>
-
-                                               <SwiperSlide>
-                <picture className="swiper-zoom-container">
-                    <img className="carusel-img img-fluid" src="/uploads/carousel--7mobile.webp" alt="foto-majorat" />
-                </picture>
-            </SwiperSlide>
-
-                                                           <SwiperSlide>
-                <picture className="swiper-zoom-container">
-                    <img className="carusel-img img-fluid" src="/uploads/carousel--8mobile.webp" alt="foto-majorat" />
+                    <img className="carusel-img img-fluid" src="/uploads/carousel--6mobile.webp" alt="foto2" />
                 </picture>
             </SwiperSlide>
 
             <SwiperSlide>
                 <picture className="swiper-zoom-container">
-                    <img className="carusel-img img-fluid" src="/uploads/carusel--2.webp" alt="foto-nunta-natura" />
+                    <img className="carusel-img img-fluid" src="/uploads/carousel--7mobile.webp" alt="foto3" />
+                </picture>
+            </SwiperSlide>
+
+            <SwiperSlide>
+                <picture className="swiper-zoom-container">
+                    <img className="carusel-img img-fluid" src="/uploads/carousel--8mobile.webp" alt="foto4" />
+                </picture>
+            </SwiperSlide>
+
+            <SwiperSlide>
+                <picture className="swiper-zoom-container">
+                    <img className="carusel-img img-fluid" src="/uploads/carusel--2.webp" alt="foto5" />
                 </picture>
 
             </SwiperSlide>
             <SwiperSlide>
 
                 <picture className="swiper-zoom-container">
-                    <img className="carusel-img img-fluid" src="/uploads/carusel--7.webp" alt="foto-biserica" />
+                    <img className="carusel-img img-fluid" src="/uploads/carusel--7.webp" alt="foto6" />
                 </picture>
             </SwiperSlide>
+
             <SwiperSlide>
 
                 <picture className="swiper-zoom-container">
-                    <img className="carusel-img img-fluid" src="/uploads/carusel_2a.webp" alt="foto-biserica" />
-                </picture>
-            </SwiperSlide>
-            <SwiperSlide>
-
-                <picture className="swiper-zoom-container">
-                    <img className="carusel-img img-fluid" src="/uploads/carusel_3b.webp" alt="foto-mireasa" />
+                    <img className="carusel-img img-fluid" src="/uploads/carusel_3b.webp" alt="foto8" />
                 </picture>
 
             </SwiperSlide>
             <SwiperSlide>
                 <picture className="swiper-zoom-container">
-                    <img className="carusel-img img-fluid" src="/uploads/majorat.webp" alt="foto-majorat" />
+                    <img className="carusel-img img-fluid" src="/uploads/majorat.webp" alt="foto9" />
                 </picture>
             </SwiperSlide>
             

@@ -34,23 +34,14 @@ const Carusel = (props) => {
 
                           <SwiperSlide>
                 <picture className="swiper-zoom-container" >
-                    <img loading="lazy" className="carusel-img img-fluid" src="/uploads/carousel-01.webp" alt="foto-miri" />
+                    <img loading="lazy" className="carusel-img img-fluid" src="/uploads/carousel-01.webp" alt="foto-miri1" />
                 </picture>
 
             </SwiperSlide>
 
                         <SwiperSlide>
                 <picture className="swiper-zoom-container" >
-                    <img loading="lazy" className="carusel-img img-fluid" src="/uploads/carousel-02.webp" alt="foto-miri" />
-                </picture>
-
-            </SwiperSlide>
-
-
-
-            <SwiperSlide>
-                <picture className="swiper-zoom-container" >
-                    <img loading="lazy" className="carusel-img img-fluid" src="/uploads/carousel-03.webp" alt="foto-miri" />
+                    <img loading="lazy" className="carusel-img img-fluid" src="/uploads/carousel-02.webp" alt="foto-miri2" />
                 </picture>
 
             </SwiperSlide>
@@ -58,7 +49,7 @@ const Carusel = (props) => {
 
                         <SwiperSlide>
                 <picture className="swiper-zoom-container" >
-                    <img loading="lazy" className="carusel-img img-fluid" src="/uploads/carousel-04.webp" alt="foto-miri" />
+                    <img loading="lazy" className="carusel-img img-fluid" src="/uploads/carousel-04.webp" alt="foto-miri4" />
                 </picture>
 
             </SwiperSlide>

@@ -40,6 +40,12 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(publicDirectoryPath));
 
+app.get("/sitemap.xml", (req, res) => {
+  res.type("application/xml");
+  res.sendFile(path.join(__dirname, "public", "sitemap.xml"));
+});
+
+
 //app.use(express.static(buildDirectoryPath));
 
 app.use(

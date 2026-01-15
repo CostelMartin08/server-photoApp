@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+<!--
+  Actualizare hartă a site‑ului pentru balanandrei.ro la 15 ianuarie 2026.
+  Această listă reflectă paginile existente la data generării.
+-->
+
+  <!-- Pagina principală -->
+  <url>
+    <loc>https://balanandrei.ro/</loc>
+    <lastmod>2026-01-15T00:00:00+00:00</lastmod>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Portofoliu Foto – Nunti -->
+  <url>
+    <loc>https://balanandrei.ro/portofoliuFoto/Nunti</loc>
+    <lastmod>2026-01-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Evenimente Nunti existente -->
+  <url>
+    <loc>https://balanandrei.ro/portofoliuFoto/Nunti/R%C4%83zvan%20%26%20Cristina</loc>
+    <lastmod>2026-01-15T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://balanandrei.ro/portofoliuFoto/Nunti/Diana%20%26%20Adrian</loc>
+    <lastmod>2026-01-15T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://balanandrei.ro/portofoliuFoto/Nunti/Nicu%20%26%20Ana-Maria</loc>
+    <lastmod>2026-01-15T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Portofoliu Foto – Botezuri -->
+  <url>
+    <loc>https://balanandrei.ro/portofoliuFoto/Botezuri</loc>
+    <lastmod>2026-01-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://balanandrei.ro/portofoliuFoto/Botezuri/Fotografii%20Botez</loc>
+    <lastmod>2026-01-15T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Portofoliu Foto – Diverse -->
+  <url>
+    <loc>https://balanandrei.ro/portofoliuFoto/Diverse</loc>
+    <lastmod>2026-01-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://balanandrei.ro/portofoliuFoto/Diverse/Diverse%20Fotografii</loc>
+    <lastmod>2026-01-15T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Portofoliu Video -->
+  <url>
+    <loc>https://balanandrei.ro/portofoliuVideo/Nunti</loc>
+    <lastmod>2026-01-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://balanandrei.ro/portofoliuVideo/Botezuri</loc>
+    <lastmod>2026-01-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://balanandrei.ro/portofoliuVideo/Comercial</loc>
+    <lastmod>2026-01-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://balanandrei.ro/contact</loc>
+    <lastmod>2026-01-15T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

@@ -47,11 +47,6 @@ const CaruselMobile = (props) => {
                 </picture>
             </SwiperSlide>
 
-            <SwiperSlide>
-                <picture className="swiper-zoom-container">
-                    <img className="carusel-img img-fluid" src="/uploads/carousel--7mobile.webp" alt="foto3" />
-                </picture>
-            </SwiperSlide>
 
             <SwiperSlide>
                 <picture className="swiper-zoom-container">

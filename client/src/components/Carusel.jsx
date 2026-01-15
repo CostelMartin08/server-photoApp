@@ -31,6 +31,37 @@ const Carusel = (props) => {
             }}
             slidesPerView={1}
             className={props.theme.mod.bgHeader} >
+
+                          <SwiperSlide>
+                <picture className="swiper-zoom-container" >
+                    <img loading="lazy" className="carusel-img img-fluid" src="/uploads/carousel-01.webp" alt="foto-miri" />
+                </picture>
+
+            </SwiperSlide>
+
+                        <SwiperSlide>
+                <picture className="swiper-zoom-container" >
+                    <img loading="lazy" className="carusel-img img-fluid" src="/uploads/carousel-02.webp" alt="foto-miri" />
+                </picture>
+
+            </SwiperSlide>
+
+
+
+            <SwiperSlide>
+                <picture className="swiper-zoom-container" >
+                    <img loading="lazy" className="carusel-img img-fluid" src="/uploads/carousel-03.webp" alt="foto-miri" />
+                </picture>
+
+            </SwiperSlide>
+
+
+                        <SwiperSlide>
+                <picture className="swiper-zoom-container" >
+                    <img loading="lazy" className="carusel-img img-fluid" src="/uploads/carousel-04.webp" alt="foto-miri" />
+                </picture>
+
+            </SwiperSlide>
             <SwiperSlide>
 
                 <picture className='swiper-zoom-container'>
@@ -85,6 +116,8 @@ const Carusel = (props) => {
                 </picture>
 
             </SwiperSlide>
+
+
 
         </Swiper>
 

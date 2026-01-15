@@ -32,6 +32,33 @@ const CaruselMobile = (props) => {
             slidesPerView={1}
             className={props.theme.mod.bgHeader} >
 
+
+
+                
+                        <SwiperSlide>
+                <picture className="swiper-zoom-container">
+                    <img className="carusel-img img-fluid" src="/uploads/carousel--5mobile.webp" alt="foto-majorat" />
+                </picture>
+            </SwiperSlide>
+
+                                   <SwiperSlide>
+                <picture className="swiper-zoom-container">
+                    <img className="carusel-img img-fluid" src="/uploads/carousel--6mobile.webp" alt="foto-majorat" />
+                </picture>
+            </SwiperSlide>
+
+                                               <SwiperSlide>
+                <picture className="swiper-zoom-container">
+                    <img className="carusel-img img-fluid" src="/uploads/carousel--7mobile.webp" alt="foto-majorat" />
+                </picture>
+            </SwiperSlide>
+
+                                                           <SwiperSlide>
+                <picture className="swiper-zoom-container">
+                    <img className="carusel-img img-fluid" src="/uploads/carousel--8mobile.webp" alt="foto-majorat" />
+                </picture>
+            </SwiperSlide>
+
             <SwiperSlide>
                 <picture className="swiper-zoom-container">
                     <img className="carusel-img img-fluid" src="/uploads/carusel--2.webp" alt="foto-nunta-natura" />
@@ -62,7 +89,7 @@ const CaruselMobile = (props) => {
                     <img className="carusel-img img-fluid" src="/uploads/majorat.webp" alt="foto-majorat" />
                 </picture>
             </SwiperSlide>
-
+            
         </Swiper>
 
     );

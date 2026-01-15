@@ -1,0 +1,5 @@
+User-agent: *
+disallow: /login
+disallow: /controlPanel
+
+sitemap: https://balanandrei.ro/sitemap.xml
